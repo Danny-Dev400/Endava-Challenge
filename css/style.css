@@ -1,4 +1,80 @@
+*{
+    box-sizing: border-box;
+}
+.logoNav {
+  margin-right: 20px;
+}
+.colorPrueba {
+  background-color: brown;
+}
+.flex-form {
+  display: flex;
+  padding-top: 30px;
+}
+.flexStart {
+  justify-content: flex-start;
+}
+.flexEnd {
+  justify-content: flex-end;
+}
+.flexCenter {
+  justify-content: center;
+}
+.flexCenter2 {
+  align-items: center;
+}
+
+.flexColumn {
+  flex-direction: column;
+}
+.flexRow {
+  flex-direction: row;
+}
+.flexItem {
+  flex-grow: 1;
+}
+.maxWidth {
+  width: 100%;
+}
+.colorPrueba {
+  background-color: blue;
+}
+
+.marginAuto{
+    margin: auto;
+    text-align: center;
+}
+
+body{
+    background-color: #537895;
+    background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);
+    font-family: 'Roboto', sans-serif;
+    color: aliceblue;
+    
+
+}
+
+.size-card{
+    font-size: 1rem;
+}
 .principal-container{
-    background-color: brown;
-    height: 400vh;
+    margin: auto;
+    width: 80%;
+    /*background-color: brown;*/
+    /*height: 400vh;*/
+}
+.slider{
+    margin: auto;
+    margin-top: 30px;
+    width: 88%;
+    height: 50vh;
+    background-color: blue;
+}
+.container-pelis{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.opacity{
+    opacity: 0.1;
 }
