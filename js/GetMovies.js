@@ -7,6 +7,7 @@ const slider = document.getElementById("slider")
 
 let paginaActual = 1
 
+
 function GetMovies(pagActual){
     top100.innerHTML = ``
     let contAux=1;
@@ -22,6 +23,7 @@ function GetMovies(pagActual){
             //console.log('data = ', data);
             container_catalogo.innerHTML = ``;
             for (let i in data){
+                console.log(data[i]['movieId'])
                 linkTMDS  = GetLinksMovies(data[i]['movieId'])
                 linkTMDS.then(function(id){
                     //console.log('data = ', id)
@@ -47,7 +49,7 @@ function GetMovies(pagActual){
                                     </div>
                                 </div>
                             `
-                            console.log(contAux)
+                            //console.log(contAux)
                         }
                         contAux+=1
                         
@@ -55,7 +57,7 @@ function GetMovies(pagActual){
                 })
                     
 
-                //console.log(data[i])
+                
                 cont++;
                 if (cont >= pagActual*36){
                     break;
@@ -74,12 +76,12 @@ function GetMovies(pagActual){
                     <li class="page-item disabled">
                     <a class="page-link" href="#" tabindex="-1">Previous</a>
                     </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link" href="#">6</a></li>
+                    <li class="page-item"><a id="${pagActual}" class="page-link" href="#">${pagActual}</a></li>
+                    <li class="page-item"><a id="${pagActual+1}" class="page-link" href="#">${pagActual+1}</a></li>
+                    <li class="page-item"><a id="${pagActual+2}" class="page-link" href="#">${pagActual+2}</a></li>
+                    <li class="page-item"><a id="${pagActual+3}" class="page-link" href="#">${pagActual+3}</a></li>
+                    <li class="page-item"><a id="${pagActual+4}" class="page-link" href="#">${pagActual+4}</a></li>
+                    <li class="page-item"><a id="${pagActual+5}" class="page-link" href="#">${pagActual+5}</a></li>
                     <li class="page-item">
                     <a class="page-link" href="#">Next</a>
                     </li>
@@ -157,7 +159,8 @@ function GetTop100(){
             let otroCont = 0
             for(i in data){
                 //console.log(data[i])
-                linkTMDB = GetLinksMovies(data[i]['movieId'])
+                let cosa = data[i]['movieId'].toString();
+                linkTMDB = GetLinksMovies(cosa);
                 linkTMDB.then(function(link){
                     infoApi = GetInfoAPIMovies(link)
                     infoApi.then(function(dataAPI){
@@ -195,8 +198,8 @@ function GetLinksMovies(idMovie){
             return response.json();
         })
         .then(function (data){
+            console.log(idMovie)
             //console.log('data = ', data[idMovie])
-            link = data[idMovie]['tmdbId']
             return data[idMovie]['tmdbId']
         })
 }
@@ -213,6 +216,7 @@ function GetInfoAPIMovies(idMovieTMDB){
         })
 }
 
-GetMovies(5);
+GetMovies(1);
+//GetLinksMovies("101");
 GetRecomendados();
 //GetTop100();
