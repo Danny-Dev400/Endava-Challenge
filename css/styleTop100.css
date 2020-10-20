@@ -1,0 +1,32 @@
+.container-top100{
+    width: 85%;
+    margin: auto;
+}
+
+.movie-Container{
+    width: 100%;
+    margin: auto;
+    display: inline-block;
+}
+
+.imgTop100{
+    width: 18%;
+    float: left;
+}
+.imgTop100 img{
+    padding: 15px;
+    border-radius: 25px;
+}
+
+.tags{
+    padding: 15px;
+    width: 75%;
+    float: left;
+}
+
+.movie-Container h1{
+    font-size: 3rem;
+}
+.movie-Container h3{
+    font-size: 1.3rem;
+}
