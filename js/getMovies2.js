@@ -37,6 +37,7 @@ function getPagina(paginaActual){
                             </div>
                         </div>
                         <div class="flip-card-back ">
+                            
                             <h1>${dataAPI['title']}</h1> 
                             <h2>${dataJson['genres'].replace('|',' ').replace('|',' ').replace('|',' ').replace('|',' ')}</h2> 
                             <p>${dataAPI['overview'].slice(0,500)}</p>
