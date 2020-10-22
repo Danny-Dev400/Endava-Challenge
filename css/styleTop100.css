@@ -4,29 +4,40 @@
 }
 
 .movie-Container{
+
+    border-bottom: 5px solid rgb(59, 192, 233);
+
+    border-radius: 15px;
     width: 100%;
     margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
     display: inline-block;
 }
 
+.container-top100{
+    margin-top: 25px;
+}
+
 .imgTop100{
-    width: 18%;
+    width: 20%;
     float: left;
 }
 .imgTop100 img{
-    padding: 15px;
+    padding: 10px;
     border-radius: 25px;
 }
 
 .tags{
-    padding: 15px;
+    padding: 5px;
     width: 75%;
     float: left;
 }
 
 .movie-Container h1{
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 .movie-Container h3{
-    font-size: 1.3rem;
+    text-align: justify;
+    font-size: 1.1rem;
 }

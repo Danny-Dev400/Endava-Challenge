@@ -70,6 +70,11 @@ body{
   cursor: pointer;
 }
 
+.card-title2{
+  margin-top: 10px;
+  font-size: 1.4rem;
+}
+
 .size-card{
     font-size: 1rem;
 }
@@ -85,7 +90,7 @@ body{
     width: 88%;
 }
 .slider h1{
-  font-size: 5rem;
+  font-size: 3.1rem;
   text-align: center;
 }
 .container-pelis{
@@ -95,6 +100,14 @@ body{
 }
 .opacity{
     opacity: 0.1;
+}
+.categorias{
+  flex-direction: column;
+  float: left;
+}
+.bloque{
+  width: 330%;
+  flex-direction: row;
 }
 
 .puntuacion{
@@ -172,7 +185,7 @@ body{
 }
 
 .flip-card-back p{
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   line-height: 1;
   text-align: justify;
   padding: 8px;
@@ -185,7 +198,7 @@ body{
 }
 
 .flip-card-back h1{
-  font-size: 1.5rem;
+  font-size: 2rem;
   padding: 8px;
 
 }

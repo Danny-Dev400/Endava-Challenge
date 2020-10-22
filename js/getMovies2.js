@@ -4,6 +4,10 @@ const imgSlider = document.getElementById("img-carrusel")
 const dataSlider = document.getElementById("dataCarrucel")
 const top100 = document.getElementById("Top100")
 const slider = document.getElementById("slider")
+const nombrePelicula = document.getElementById('Name-Movie')
+
+const genres = ["Action","Adventure","Animation","Children","Comedy","Crime","Documentary","Drama","Fantasy","Film-Noir","Horror","Musical"
+                ,"Mystery","Romance","Sci-Fi","Thriller","War","Western"]
 
 let paginaActual = 1
 
@@ -33,14 +37,14 @@ function getPagina(paginaActual){
                         <div class="flip-card-front">
                             <img src="${'https://image.tmdb.org/t/p/w500'+dataAPI['poster_path']}" alt="Avatar" style="width:100%; ">
                             <div class="card-body justify-content-center flex" style="margin-left: 5px; padding: 0px; ">
-                                <h5 class="card-title marginAuto">${dataAPI['title']}</h5>
+                                <h5 class="card-title card-title2 marginAuto">${dataAPI['title']}</h5>
                             </div>
                         </div>
                         <div class="flip-card-back ">
                             
                             <h1>${dataAPI['title']}</h1> 
                             <h2>${dataJson['genres'].replace('|',' ').replace('|',' ').replace('|',' ').replace('|',' ')}</h2> 
-                            <p>${dataAPI['overview'].slice(0,500)}</p>
+                            <p>${dataAPI['overview'].slice(0,400)}</p>
                             <h2>☆ ${dataJson['rating']} </h2>
                         </div>
                         </div>
@@ -119,9 +123,11 @@ function getPagina(paginaActual){
 function getTop100(){
     top100.innerHTML = ``
     container_catalogo.innerHTML = ``
+    paginas.innerHTML = ``
     let infoAPI;
     let movie;
     for(let i=0; i<100; i++){
+        console.log(i)
         movie = getMovie100(i)
         movie.then(function(dataJson){
             infoAPI  = getInfoAPI(dataJson['links'])
@@ -133,10 +139,10 @@ function getTop100(){
                         </div>
                         <div class="tags">
                             <h1> Top ${i+1}: ${dataAPI['title']}</h1>
-                            <h3>Año: ${dataAPI['release_date']}</h3>
-                            <h3>Puntuacion: ${dataJson['rating']}</h3>
-                            <h3>${dataAPI['overview']}</h3>
-                            <h3>generos: ${dataJson['genres']}</h3>
+                            <h3> Year: ${dataAPI['release_date']}</h3>
+                            <h3> Score: ${dataJson['rating']} ☆</h3>
+                            <h3> Synopsis: ${dataAPI['overview']}</h3>
+                            <h3>Genres: ${dataJson['genres']}</h3>
                         </div>
                     </div>
                 `
@@ -179,10 +185,91 @@ function getRecomendados(){
     }
 }
 
+function getMovieSerch(){
+    top100.innerHTML = ``
+    container_catalogo.innerHTML = ``
+    paginas.innerHTML = ``
+    let keyWord = nombrePelicula.value
+    let infoAPI;
+    let movie;
+    let index;
+    console.log(keyWord)
+    for(let i=0;i<1296;i++){
+        movie = getMovie(i)
+        movie.then(function(dataJson){
+            index = dataJson['title'].toLowerCase().indexOf(keyWord.toLowerCase())
+            if(index >= 0){
+                infoAPI = getInfoAPI(dataJson['links'])
+                infoAPI.then(function(dataAPI){
+                    console.log('encontre datos')
+                    top100.innerHTML += `
+                    <div class="movie-Container">
+                        <div class="imgTop100">
+                            <img src="${'https://image.tmdb.org/t/p/w500'+dataAPI['poster_path']}" width="100%" alt="">
+                        </div>
+                        <div class="tags">
+                            <h1> Title: ${dataAPI['title']}</h1>
+                            <h3> Year: ${dataAPI['release_date']}</h3>
+                            <h3> Score: ${dataJson['rating']} ☆</h3>
+                            <h3> Synopsis: ${dataAPI['overview']}</h3>
+                            <h3>Genres: ${dataJson['genres']}</h3>
+                        </div>
+                    </div>
+                    `
+                })
+            }
+
+        })
+    }
+}
+
+function getByGenres(idGenres){
+    let keyWord = genres[idGenres]
+    top100.innerHTML = ``
+    container_catalogo.innerHTML = ``
+    paginas.innerHTML = ``
+    let infoAPI;
+    let movie;
+    let index;
+    console.log(keyWord)
+    cont =0
+    for(let i=0;i<1296;i++){
+        movie = getMovie(i)
+        movie.then(function(dataJson){
+            index = dataJson['genres'].toLowerCase().indexOf(keyWord.toLowerCase())
+            if(index >= 0  & cont <=50){
+                infoAPI = getInfoAPI(dataJson['links'])
+                infoAPI.then(function(dataAPI){
+                    console.log('encontre datos')
+                    top100.innerHTML += `
+                    <div class="movie-Container">
+                        <div class="imgTop100">
+                            <img src="${'https://image.tmdb.org/t/p/w500'+dataAPI['poster_path']}" width="100%" alt="">
+                        </div>
+                        <div class="tags">
+                            <h1> Title: ${dataAPI['title']}</h1>
+                            <h3> Year: ${dataAPI['release_date']}</h3>
+                            <h3> Score: ${dataJson['rating']} ☆</h3>
+                            <h3> Synopsis: ${dataAPI['overview']}</h3>
+                            <h3>Genres: ${dataJson['genres']}</h3>
+                        </div>
+                    </div>
+                    `
+
+
+                })
+
+                cont ++;
+            }
+
+        })
+    }
+}
+
 function getMovie(idMovie){
     return fetch('/dataset/DataSetMovies4.json')
         .then(function(response){
-            console.log('hay data')
+            //console.log('hay data')
             return response.json()
         })
         .then(function(data){
