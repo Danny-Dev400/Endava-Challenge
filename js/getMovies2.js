@@ -194,11 +194,14 @@ function getMovieSerch(){
     let movie;
     let index;
     console.log(keyWord)
+    cont =[]
     for(let i=0;i<1296;i++){
         movie = getMovie(i)
         movie.then(function(dataJson){
             index = dataJson['title'].toLowerCase().indexOf(keyWord.toLowerCase())
             if(index >= 0){
+                //cont.push('algo')
+                //console.log(cont)
                 infoAPI = getInfoAPI(dataJson['links'])
                 infoAPI.then(function(dataAPI){
                     console.log('encontre datos')
@@ -217,10 +220,23 @@ function getMovieSerch(){
                     </div>
                     `
                 })
+            }else{
+                cont.push(0)
             }
 
         })
+
+
     }
+    console.log(cont.length)
+    if(cont.length == 1296){
+        top100.innerHTML += `
+            <div class="movie-Container">
+                <h1> NO SE HA ENCONTRADO NADA, VUEVE A INTENTARLO </h1>
+            </div>
+        `
+    }
+    
 }
 
 function getByGenres(idGenres){
